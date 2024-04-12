@@ -6,6 +6,7 @@ require('dotenv').config()
 const account = process.env.SNOWFLAKE_ACCOUNT
 const username = process.env.SNOWFLAKE_USERNAME
 const password = process.env.SNOWFLAKE_PASSWORD
+const database = process.env.SNOWFLAKE_DATABASE
 
 const connectionPool = snowflake.createPool(
     {
@@ -13,7 +14,7 @@ const connectionPool = snowflake.createPool(
       username,
       password,
       authenticator: 'SNOWFLAKE',
-      database: 'SERHANT_SHARE'
+      database
     },
     {
       max: 10,
