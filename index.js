@@ -22,9 +22,15 @@ const connectionPool = snowflake.createPool(
     }
 );
 
-const sqlText = `select * from serhant_share.serhant.luxury_presence_property_slugs WHERE mls_property_id ILIKE '%' || :1`
+const sqlText = `select * from serhant_share.serhant.luxury_presence_property_slugs WHERE mls_property_id ILIKE '%' || :1 LIMIT 1`
 const listing = (req, res) => {
     const mlsnumber = req.params.mlsnumber?.split('-').pop()
+    if (mlsnumber.length < 4) {
+        res.status(400)
+        res.end()
+        return
+    }
+
 
     connectionPool.use(async (clientConnection) => {
         await clientConnection.execute({
