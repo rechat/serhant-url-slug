@@ -42,13 +42,16 @@ const listing = (req, res) => {
                 let url = false
                 stream.on('data', function (row)
                 {
+                    console.log('Found', mlsnumber, row.SLUG)
                     url = 'https://serhant.com/properties/' + row.SLUG
 
                 });
                 stream.on('end', function (row)
                 {
-                    if (!url)
+                    if (!url) {
+                        console.log('Not Found', mlsnumber)
                         url = 'https://serhant.com/properties/' + mlsnumber
+                    }
 
                     res.redirect(url)
                     res.end()
