@@ -62,6 +62,12 @@ const listing = (req, res) => {
 
 }
 
+const health = (req, res) => {
+    res.status(200)
+    res.end()
+}
+
 const app = express()
 app.get('/listing/:mlsnumber', listing)
+app.get('/health', health)
 app.listen(process.env.PORT || 8080)

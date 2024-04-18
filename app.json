@@ -1,0 +1,26 @@
+{
+  "healthchecks": {
+    "web": [
+      {
+        "type":        "startup",
+        "description": "Checking if the app is ready",
+        "path":        "/health",
+        "attempts": 5
+      },
+
+      {
+        "type":        "readiness",
+        "description": "Checking if the app is ready",
+        "path":        "/health",
+        "attempts": 1
+      },
+
+      {
+        "type":        "liveness",
+        "description": "Checking if the app is ready",
+        "path":        "/health",
+        "attempts": 1
+      }
+    ]
+  }
+}
